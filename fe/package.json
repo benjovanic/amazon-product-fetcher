@@ -1,0 +1,118 @@
+{
+  "name": "amazon-product-fetcher-fe",
+  "description": "App to get basic product information for a given Amazon ASIN",
+  "scripts": {
+    "start": "run-p start:dev",
+    "start:dev": "webpack-dev-server --config webpack.config.dev.js --port 3000",
+    "test": "jest --watch",
+    "test:ci": "jest",
+    "clean:build": "rimraf ./build && mkdir build",
+    "prebuild": "run-p clean:build test:ci",
+    "build": "webpack --config webpack.config.prod.js",
+    "postbuild": "run-p serve:build",
+    "serve:build": "http-server ./build"
+  },
+  "jest": {
+    "setupFiles": [
+      "./tools/testSetup.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tools/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/tools/styleMock.js"
+    }
+  },
+  "dependencies": {
+    "bootstrap": "4.3.1",
+    "dom-parser": "^0.1.6",
+    "immer": "4.0.0",
+    "npm-check-updates": "3.1.23",
+    "prop-types": "15.7.2",
+    "react": "16.9.0",
+    "react-dom": "16.9.0",
+    "react-redux": "7.1.1",
+    "react-router-dom": "5.0.1",
+    "react-toastify": "5.3.2",
+    "redux": "4.0.4",
+    "redux-thunk": "2.3.0",
+    "request": "^2.88.0",
+    "reselect": "4.0.0",
+    "xmldom": "0.1.27",
+    "xpath": "0.0.27",
+    "zlib": "^1.0.5"
+  },
+  "devDependencies": {
+    "@babel/core": "7.6.0",
+    "babel-eslint": "10.0.3",
+    "babel-loader": "8.0.6",
+    "babel-preset-react-app": "9.0.2",
+    "css-loader": "3.2.0",
+    "cssnano": "4.1.10",
+    "enzyme": "3.10.0",
+    "enzyme-adapter-react-16": "1.14.0",
+    "eslint": "6.4.0",
+    "eslint-loader": "3.0.0",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-react": "7.14.3",
+    "fetch-mock": "7.3.9",
+    "html-webpack-plugin": "3.2.0",
+    "http-server": "0.11.1",
+    "jest": "24.9.0",
+    "json-server": "0.15.1",
+    "mini-css-extract-plugin": "0.8.0",
+    "node-fetch": "2.6.0",
+    "npm-run-all": "4.1.5",
+    "postcss-loader": "3.0.0",
+    "react-test-renderer": "16.9.0",
+    "react-testing-library": "8.0.1",
+    "redux-immutable-state-invariant": "2.1.0",
+    "redux-mock-store": "1.5.3",
+    "rimraf": "3.0.0",
+    "style-loader": "1.0.0",
+    "webpack": "4.40.2",
+    "webpack-bundle-analyzer": "3.5.1",
+    "webpack-cli": "3.3.9",
+    "webpack-dev-server": "3.8.1"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "babel": {
+    "presets": [
+      "babel-preset-react-app"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true,
+      "jest": true
+    },
+    "rules": {
+      "no-debugger": "off",
+      "no-console": "off",
+      "no-unused-vars": "warn",
+      "react/prop-types": "warn"
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "root": true
+  }
+}

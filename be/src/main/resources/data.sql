@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS product_entity;
+
+CREATE TABLE product_entity (
+  id VARCHAR(250) PRIMARY KEY,
+  name VARCHAR(250) NOT NULL,
+  category VARCHAR(250) NOT NULL,
+  rank VARCHAR(250) NOT NULL,
+  dimensions VARCHAR(250) NOT NULL
+);
