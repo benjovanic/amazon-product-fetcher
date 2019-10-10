@@ -25,7 +25,7 @@ public class ProductService {
     public List<ProductDto> getProducts() {
         return productRepository.findAll()
                 .stream()
-                .map(this::mapProductDtoToEntity)
+                .map(this::mapProductEntityToDto)
                 .collect(Collectors.toList());
     }
 
@@ -42,28 +42,24 @@ public class ProductService {
         String category = productHelper.getProductCategory(document);
         String rank = productHelper.getProductRank(document);
 
-        productRepository.save(ProductEntity.builder()
-                .id(asin)
-                .category(category)
-                .dimensions(dimensions)
-                .rank(rank)
-                .name(name)
-                .build());
-
-        return ProductDto.builder()
+        ProductEntity productEntity = ProductEntity.builder()
                 .id(asin)
                 .category(category)
                 .dimensions(dimensions)
                 .rank(rank)
                 .name(name)
                 .build();
+
+        productRepository.save(productEntity);
+
+        return mapProductEntityToDto(productEntity);
     }
 
     /**
      * @param productEntity Entity object to be mapped.
      * @return A ProductDto object mapped from a ProductEntity.
      */
-    private ProductDto mapProductDtoToEntity(ProductEntity productEntity) {
+    private ProductDto mapProductEntityToDto(ProductEntity productEntity) {
         return ProductDto.builder()
                 .id(productEntity.getId())
                 .name(productEntity.getName())
