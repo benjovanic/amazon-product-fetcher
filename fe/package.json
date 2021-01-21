@@ -24,7 +24,7 @@
   "dependencies": {
     "bootstrap": "4.3.1",
     "dom-parser": "^0.1.6",
-    "immer": "4.0.0",
+    "immer": "8.0.1",
     "npm-check-updates": "3.1.23",
     "prop-types": "15.7.2",
     "react": "16.9.0",
